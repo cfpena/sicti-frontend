@@ -1,0 +1,329 @@
+
+<nav class="light-blue darken-4" >
+  <div class="nav-wrapper navbar-fixed" >
+    <a href="#" (click)="openMenu()"data-activates="nav-mobile" class="button-collapse show-on-large left"><i class="material-icons left">menu</i></a>
+    <a href="#!" class="brand-logo">{{title}}</a>
+  </div>
+</nav>
+
+<!--Tabla de kits-->
+<ion-content>
+  <div *ngIf="template=='null'">
+    <!--Búsqueda por codigo o nombre-->
+    <div class="row">
+      <!--Nueva Búsqueda  dejando solo el input-->
+      <div class="col l3 m4 s12 offset-l9 offset-m8">
+        <div class="input-field">
+          <i class="material-icons prefix" style="color:#009688">search</i>
+          <input (keyup)="buscar()" type="text" id="identificacion" minlength="0" maxlength="20" [(ngModel)]="busqueda.valor">
+          <label class="black-text active" for="identificacion" >Búsqueda</label>
+        </div>
+      </div>
+    </div>
+    <table  materialize class="centered table centered striped" style="font-size: 15px">
+      <thead>
+        <tr>
+          <th></th>
+          <th data-field="id">Código</th>
+          <th data-field="nombre">Nombre</th>
+          <th data-field="cantidad">Cantidad</th>
+          <th data-field="disponible">Disponible</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let kit of kits">
+          <td>
+            <input (change)="select(kit)" id={{kit.url}} type="checkbox" class="filled-in"/>
+            <label attr.for="{{kit.url}}"></label>
+          </td>
+          <td>{{kit.Codigo}}</td>
+          <td>{{kit.Nombre}}</td>
+          <td>{{kit.Stock}}</td>
+          <td>{{kit.Stock_Disponible}}</td>
+          <td>
+            <a class="button-collapse" (click)="goModificar(kit)"><i  style="cursor: pointer" class="material-icons left">description</i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>
+
+
+<!--Boton flotante de opciones add, edit, delete-->
+<!-- if de angular, valida si se debe mostrar o no segun la variable template -->
+<div *ngIf="template=='null'">
+  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large orange darken-1">
+      <i class="large material-icons">settings</i>
+    </a>
+    <ul>
+      <li><a (click)="eliminar()" class="btn-floating red"><i class="material-icons">delete</i></a></li>
+      <li><a (click)="goCrearKit()" class="btn-floating blue"><i class="material-icons">add</i></a></li>
+    </ul>
+  </div>
+</div>
+
+<!--crear kit-->
+<div *ngIf="template=='crear'" style="overflow: scroll;">
+  <div id="nuevo_kit" class="section">
+    <div class="row ">
+      <!--primer panel-->
+      <div class="col l4 m5 s12">
+        <div class="card-panel blue-grey lighten-5 ">
+          <span class="card-title">Nuevo Kit</span>
+          <div class="row">
+              <span style="font-size: 13px">(*) Campos obligatorios</span>
+          </div>
+         <div style="padding-top: 3%;"></div>
+          <div class="row">
+            <!--primera columna-->
+            <div class="col l12 m12 s12">
+              <div class="row">
+                <div class="input-field col l11 m11 s11">
+                  <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+                  <input id="icon_codigo" style="font-weight: bold;" disabled="disabled" type="text" class="validate" minlength="2" maxlength="30" pattern = "[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9 ]*" [(ngModel)]="kitNuevo.Codigo" >
+                  <label for="icon_codigo" class="active" data-error="Código vacío o Incorrecto">Código</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col l11 m11 s11">
+                  <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+                  <input id="icon_nombre" type="text" class="validate" minlength="2" maxlength="30" pattern = "[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9 ]*" [(ngModel)]="kitNuevo.Nombre" >
+                  <label for="icon_nombre" data-error="Nombre vacío o Incorrecto">Nombre</label>
+                </div>
+                <div class="col l1 m1 s1">
+                  <h6 id="obligatorio" style="color:red; padding-top: 40px">*</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col l11 m11 s11">
+                  <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+                  <input id="icon_marca" type="text" class="validate"  minlength="0" maxlength="30"  [(ngModel)]="kitNuevo.Marca">
+                  <label for="icon_marca" data-error="Marca vacía o Incorrecta" >Marca</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col l11 m11 s11">
+                  <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+                  <input id="icon_modelo" type="text" class="validate"  minlength="0" maxlength="30"  [(ngModel)]="kitNuevo.Modelo">
+                  <label for="icon_modelo" data-error="Modelo vacio o Incorrecto" >Modelo</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col l11 m11 s11">
+                  <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+                  <textarea id="textarea1" class="materialize-textarea" minlength="2" maxlength="50" pattern = "[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9 ]*" [(ngModel)]="kitNuevo.Descripcion"></textarea>
+                  <label for="textarea1" data-error="Descripción vacía o Incompleta">Descripción</label>
+                </div>
+                <div class="col l1 m1 s1">
+                  <h6 id="obligatorio" style="color:red; padding-top: 40px">*</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--segundo panel-->
+      <div class="col l8 m7 s12">
+        <div class="card-panel blue-grey lighten-5 ">
+          <span class="card-title">Ítems</span>
+          <div style="padding-top: 7%;"></div>
+
+          <div class="row">
+            <div class="row">
+              <div class="col l6 m6 s12">
+                <div class="input-field">
+                  <i class="material-icons prefix" style="color:#009688">search</i>
+                  <input id="item" type="text" class="validate filter-input" minlength="0" maxlength="20" [(ngModel)]=descripcionItem (keyup)=buscarItem()>
+                  <label for="item" class="active" >Nombre o código para buscar un ítem </label>
+                  <ul class="dropdown-content active"  style="opacity: 1; display: block;">
+                    <li *ngFor="let item of listaFiltradaItem">
+                      <a (click)="seleccionarItem(item)">{{item.Codigo}} - {{item.Nombre}} </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col l2 m3 s6 offset-s2 offset-m1">
+                <div class="input-field" >
+                  <input id="itemCant" type="text" class="validate filter-input center" [(ngModel)]=cantidad minlength="1" maxlength="2" pattern = "[0-9]*" >
+                  <label for="itemCant" class="active" data-error="Cantidad vacía o Incompleta">Cantidad</label>
+                </div>
+              </div>
+              <div class="col l2 m3 s3">
+                <div class="input-field" >
+                  <a (click)="agregarItem()" class="btn-floating btn-small waves-effect waves-light green right">
+                    <i class="material-icons">add</i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="row" style="color:#424242; font-size: 60%">
+              <div class="col l6 m6 s4 ">
+                <h6 class="center">Ítem</h6>
+              </div>
+              <div class="col l2 m3 s4 offset-m1">
+                <h6 class="center">Cantidad</h6>
+              </div>
+            </div>
+            <!--lista de items-->
+            <div *ngFor = "let kitdet of listaDetalleKit">
+              <div class="divider"></div>
+              <div class="row">
+                <ul>
+                  <div class="col l6 m7 s7" style="color:#424242; font-size: 65%">
+                    <li id="nombre">Nombre: {{kitdet.Item.Nombre}}</li>
+                    <li id="codigo">Código: {{kitdet.Item.Codigo}}</li>
+                  </div>
+                  <div class="col l2 m3 s3">
+                    <li> <input placeholder="cantidad" id="cantidad" type="text" class="validate center" [(ngModel)]="kitdet.Cantidad" ></li>
+                  </div>
+                  <div class="col l2 m2 s2 offset-l1">
+                    <li> <a (click)="eliminarItem(item)" class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons ">clear</i> </a> </li>
+                  </div>
+                </ul>
+              </div>
+            </div>
+            <div class="card-action">
+              <a (click)="crear()" class="btn waves-effect waves-light center"  style="font-size: 17px">Guardar
+                <i class="material-icons right">send</i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+      <a (click)="cancelar()" class="btn-floating btn-large waves-effect waves-light red right">
+        <i class="material-icons">clear</i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!--cMODIFICAR KIT  NUEVO-->
+<div *ngIf="template=='modificar'"  style="overflow: scroll;">
+  <div id="modificar_kit"  class="section">
+    <div class="row ">
+      <!--primer panel-->
+      <div class="col l4 m5 s12">
+        <div class="card-panel blue-grey lighten-5 ">
+          <span class="card-title">Modificar Kit</span>
+          <div style="padding-top: 7%;"></div>
+          <div class="row">
+            <!--primera columna-->
+            <div class="col l12 m12 s12">
+              <div class="row">
+                <div class="col l10 m10 s10">
+                  <div class="input-field ">
+                    <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+                    <input id="icon_codigo" style="font-weight: bold;" disabled="disabled" type="text" class="validate" [(ngModel)]="kitModificar.Codigo">
+                    <label for="icon_codigo" data-error="Código vacío o Incorrecto"  class="active validate">Código</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col l10 m10 s10">
+                  <div class="input-field">
+                    <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+                    <input id="icon_nombre" disabled="disabled" type="text" class="validate" minlength="2" maxlength="30" pattern = "[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9 ]*" [(ngModel)]="kitModificar.Nombre"  >
+                    <label for="icon_nombre" class="active" data-error="Nombre vacío o Incorrecto">Nombre</label>
+                  </div>
+                </div>
+                <div class="col l2 m2 s2">
+                  <a class="button-collapse" onclick="icon_nombre.disabled = false"><i  style="padding-top: 40px; cursor: pointer" class="material-icons left">mode_edit</i></a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col l10 m10 s10">
+                  <div class="input-field ">
+                    <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+                    <input id="icon_marca" type="text" disabled="disabled" class="validate"  minlength="0" maxlength="30"  [(ngModel)]="kitModificar.Marca">
+                    <label for="icon_marca" class="active" data-error="Marca vacía o Incorrecta">Marca</label>
+                  </div>
+                </div>
+                <div class="col l2 m2 s2">
+                  <a class="button-collapse" onclick="icon_marca.disabled = false"><i  style="padding-top: 40px; cursor: pointer" class="material-icons left">mode_edit</i></a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col l10 m10 s10">
+                  <div class="input-field">
+                    <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+                    <input id="icon_modelo" type="text" disabled="disabled" class="validate"  minlength="0" maxlength="30"  [(ngModel)]="kitModificar.Modelo">
+                    <label for="icon_modelo" class="active" data-error="Modelo vacío o Incorrecto">Modelo</label>
+                  </div>
+                </div>
+                <div class="col l2 m2 s2">
+                  <a class="button-collapse" onclick="icon_modelo.disabled = false"><i  style="padding-top: 40px; cursor: pointer" class="material-icons left">mode_edit</i></a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col l10 m10 s10">
+                  <div class="input-field col s12">
+                    <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+                    <textarea id="textarea1" disabled="disabled" class="materialize-textarea" minlength="2" maxlength="50" pattern = "[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9 ]*" [(ngModel)]="kitModificar.Descripcion"></textarea>
+                    <label for="textarea1" class="active" data-error="Descripcion vacía o Incompleta">Descripción</label>
+                  </div>
+                </div>
+                <div class="col l2 m2 s2">
+                  <a class="button-collapse" onclick="textarea1.disabled = false"><i  style="padding-top: 40px; cursor: pointer" class="material-icons left">mode_edit</i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--segundo panel-->
+      <div class="col l8 m7 s12">
+        <div class="card-panel blue-grey lighten-5 ">
+          <span class="card-title">Ítems</span>
+          <div style="padding-top: 4%;"></div>
+          <div class="row">
+            <div class="row" style="color:#424242; font-size: 60%">
+              <div class="col l6 m6 s4 ">
+                <h6 class="center">Ítem</h6>
+              </div>
+              <div class="col l2 m3 s4 ">
+                <h6 class="center">Cantidad</h6>
+              </div>
+            </div>
+            <!--lista de items-->
+            <div *ngFor = "let kitdet of listaDetalleKit">
+              <div class="divider"></div>
+              <div class="row">
+                <ul>
+                  <div class="col l6 m7 s7" style="color:#424242; font-size: 65%">
+                    <li id="nombre">Nombre: {{kitdet.Item.Nombre}}</li>
+                    <li id="codigo">Código: {{kitdet.Item.Codigo}}</li>
+                  </div>
+                  <div class="col l2 m3 s3">
+                    <li> <input placeholder="cantidad" id="cantidad" type="text" class="validate center" [(ngModel)]="kitdet.Cantidad" disabled="true"></li>
+                  </div>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card-action">
+              <a (click)="modificar()" class="btn waves-effect waves-light center"  style="font-size: 17px">Guardar
+                <i class="material-icons right">send</i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+      <a (click)="cancelar()" class="btn-floating btn-large waves-effect waves-light red right">
+        <i class="material-icons">clear</i>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,344 @@
+<nav class="light-blue darken-4" >
+  <div class="nav-wrapper navbar-fixed" >
+    <a href="#" (click)="openMenu()"data-activates="nav-mobile" class="button-collapse show-on-large left"><i class="material-icons left">menu</i></a>
+    <a href="#!" class="brand-logo">{{title}}</a>
+  </div>
+</nav>
+<!--Tabla de ítems-->
+<ion-content>
+  <div *ngIf="template=='null'">
+    <!--Búsqueda por codigo o nombre-->
+    <div class="row">
+      <!--Nueva Búsqueda  dejando solo el input-->
+      <div class="col l3 m4 s12 offset-l9 offset-m8">
+        <div class="input-field">
+          <i class="material-icons prefix" style="color:#009688">search</i>
+          <input (keyup)="buscar()" type="text" id="identificacion"  minlength="0" maxlength="20" [(ngModel)]="busqueda.valor">
+          <label class="black-text active" for="identificacion">Búsqueda</label>
+        </div>
+      </div>
+    </div>
+
+    <!--Tabla de items-->
+    <table  materialize class="centered table centered striped" style="font-size: 15px">
+      <thead>
+        <tr>
+          <th></th><!--para el select-->
+          <!--<th></th> para la imagen-->
+          <th data-field="id"></th>
+          <th data-field="id">Código</th>
+          <th data-field="nombre">Nombre</th>
+          <th data-field="cantidad">Cantidad</th>
+          <th data-field="cantidad">Disponible</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let item of items">
+          <td>
+            <!-- evento change y atributo por defecto checked false, se agrega como id el id de la persona
+            para luego saber que checkbox le pertenece a cada persona-->
+            <input (change)="select(item)" id={{item.Codigo}} type="checkbox" class="filled-in"/>
+            <label attr.for="{{item.Codigo}}"></label>
+          </td>
+          <td>
+            <img materialize="materialbox" src="{{item.Imagen}}"  alt="" class="responsive-img materialboxed"  height="42" width="42">
+          </td>
+          <td>{{item.Codigo}}</td>
+          <td>{{item.Nombre}}</td>
+          <td>{{item.Stock}}</td>
+          <td>{{item.Stock_Disponible}}</td>
+          <td>
+
+            <a class="button-collapse" (click)="goModificar(item)"><i style="cursor: pointer" class="material-icons left">description</i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>
+
+<!--MODAL QUE EXPANDE FOTO AL TOCAR
+<!--Modal Structure-->
+<div materialize id="demoModal" class=" modal modal-fixed-footer" >
+  <div class="modal-content" >
+    <div class="row">
+      <div class="col s12 m7 l7">
+        <img id="img" class="materalboxed" style="margin:0 auto;"  src="">
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+#demoModal{
+  width:400px;
+  height:400px;
+}
+#img{
+  width:800;
+  margin:0 auto;
+}
+</style>
+<!--Botón flotante para eliminar y agregar nuevo ítem-->
+<div *ngIf="template=='null'">
+  <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large orange darken-1">
+      <i class="large material-icons">settings</i>
+    </a>
+    <ul>
+      <li><a (click)="eliminar()" class="btn-floating red"><i class="material-icons">delete</i></a></li>
+      <li><a (click)="goCrearItem()" class="btn-floating blue"><i class="material-icons">add</i></a></li>
+    </ul>
+  </div>
+</div>
+
+<!--Layout para crear un nuevo ítem-->
+<div *ngIf="template=='crear'" style="overflow: scroll;">
+  <div id="nuevo_item" class="section">
+    <!--  <div class="container" style="padding-top: 90px">-->
+    <div class="container" >
+      <!--Paneles -->
+      <div class="card-panel blue-grey lighten-5 ">
+        <div class="row">
+          <div class="col l8 s12 m8">
+            <span>Nuevo Ítem</span>
+          </div>
+          <div class="col l4 s12 m4 grey lighten-2" style="font-size: 13px">
+            <div class="row">
+              <div class="col l2 m3 s2 center">
+                <span style="color:red">(*)</span>
+              </div>
+              <div class="col l6 m7 s6">
+                <span>Campos obligatorios</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col l4 m4 s12">
+            <div class="row">
+              <label style="padding-left: 12%; padding-top: 20%">Código</label>
+              <div class="input-field col l11 m11 s11">
+                <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+                <input id="icon_codigo" disabled="disabled" style="font-weight: bold;" type="text" class="validate" minlength="2" maxlength="10" pattern = "[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\s ]*" [(ngModel)]="itemNuevo.Codigo">
+                <!--<label for="icon_codigo"  class="active" data-error = "Código Incompleto">Código</label>-->
+              </div>
+              <div class="col l1 m1 s1">
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col l11 m10 s11">
+                <i class="material-icons prefix" style="color:#009688" >keyboard_arrow_right</i>
+                <input id="icon_nombre" type="text" class="validate" minlength="2" maxlength="35" pattern = "[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\s ]*" [(ngModel)]="itemNuevo.Nombre">
+                <label for="icon_nombre" data-error="Nombre vacío o Incorrecto">Nombre</label>
+              </div>
+              <div class="col l1 m1 s1">
+                <h6 id="obligatorio" style="color:red;padding-top: 40px">*</h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col l11 m11 s11">
+                <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+                <input id="icon_marca" type="text" class="validate"  minlength="2" maxlength="30" pattern = "[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\s ]*" [(ngModel)]="itemNuevo.Marca" >
+                <label for="icon_marca" data-error="Marca vacía o Incorrecta">Marca</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col l11 m11 s11">
+                <i class="material-icons prefix" style="color:#009688" >keyboard_arrow_right</i>
+                <input id="icon_modelo" type="text" class="validate"  minlength="2" maxlength="30" pattern = "[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\s ]*" [(ngModel)]="itemNuevo.Modelo">
+                <label for="icon_modelo" data-error="Modelo vacío o Incorrecto">Modelo</label>
+              </div>
+            </div>
+          </div>
+          <!--segunda columna-->
+          <div class="col l4 m4 s12">
+            <div class="row">
+              <div class="input-field col l11 m10 s11">
+              <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+              <textarea id="icon_descripcion" class="materialize-textarea validate" minlength="5" maxlength="100"  pattern = "[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\s ]*" [(ngModel)]="itemNuevo.Descripcion" ></textarea>
+              <label for="icon_descripcion"data-error="Descripción vacía o Incompleta">Descripción</label>
+            </div>
+            <div class="col l1 m1 s1">
+              <h6 id="obligatorio" style="color:red;padding-top: 40px">*</h6>
+            </div>
+          </div>
+            <div style="padding-top: 9%;">
+              <form action="#">
+                <p>
+                  <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+                  <input type="checkbox" id="test01" [(ngModel)]="itemNuevo.Es_Dispositivo"/>
+                  <label for="test01">Dispositivo</label>
+                </p>
+              </form>
+            </div>
+            <div style="padding-top: 7%;">
+            </div>
+          </div>
+          <!--tercera columna-->
+          <div class="col l4 m4 s12" >
+            <div class="row">
+              <div class="col l10 offset-l1 ">
+                <div style="padding-top: 20%" >
+                  <div class="card-panel blue-grey lighten-5">
+                    <h6 class="center" style="color:#9e9e9e">-  Cargar Foto  -</h6>
+                    <div class="input-field" >
+                      <select materialize="material_select" [materializeSelectOptions]="selectOptions" [(ngModel)]="foto.tipo">
+                        <option *ngFor="let tiposFoto of tiposFotos" [value]="tiposFoto" >{{tiposFoto}}</option>
+                      </select>
+                    </div>
+                    <form action="#">
+                      <div class="file-field input-field">
+                        <div class="btn" >
+                          <i class="material-icons">camera_enhance</i>
+                            <input type="file" multiple (change)="fileChange(input)" #input />
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text">
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="right" style="padding-top: 25%; padding-right: 6%;">
+              <a (click)="crear()" class="btn waves-effect waves-light"  style="font-size: 16px">Crear
+                <i class="material-icons right">send</i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+      <a (click)="cancelar()" class="btn-floating btn-large waves-effect waves-light red right">
+        <i class="material-icons">clear</i>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Layout para Modificar item-->
+<div *ngIf="template=='modificar'" style="overflow: scroll;">
+  <!--modificar item-->
+  <div id="modificar_item" class="section" >
+    <div class="container" >
+      <!--Paneles -->
+      <div class="card-panel  blue-grey lighten-5">
+        <span class="card-title">Modificar Ítem</span>
+        <div class="row ">
+          <div class="col l4 m4 s12">
+            <div class="input-field ">
+              <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+              <input id="icon_codigo" type="text" class="validate" minlength="2" maxlength="10" pattern = "[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\s ]*" disabled="disabled" [(ngModel)]="itemModificar.Codigo">
+              <label for="icon_codigo" data-error="Código vacío o Incorrecto">Código</label>
+            </div>
+            <div class="row">
+              <div class="col l10 m10 s10">
+                <div class="input-field">
+                  <i class="material-icons prefix" style="color:#009688" >keyboard_arrow_right</i>
+                  <input id="icon_nombre" type="text" class="validate" minlength="2" maxlength="30" pattern = "[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\s ]*" disabled="disabled" [(ngModel)]="itemModificar.Nombre">
+                  <label for="icon_nombre" data-error="Nombre vacío o Incorrecto">Nombre</label>
+                </div>
+              </div>
+              <div class="col l2 m2 s2">
+                <a class="button-collapse" onclick="icon_nombre.disabled = false"><i  style="padding-top: 40px; cursor: pointer" class="material-icons left">mode_edit</i></a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col l10 m10 s10">
+                <div class="input-field">
+                  <i class="material-icons prefix" style="color:#009688" >keyboard_arrow_right</i>
+                  <input id="icon_modelo" type="text" class="validate"  minlength="2" maxlength="30" pattern = "[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\s ]*" disabled="disabled" [(ngModel)]="itemModificar.Modelo">
+                  <label for="icon_modelo" data-error="Modelo vacío o Incompleto">Modelo</label>
+                </div>
+              </div>
+              <div class="col l2 m2 s2">
+                <a class="button-collapse" onclick="icon_modelo.disabled = false"><i  style="padding-top: 40px; cursor: pointer" class="material-icons left">mode_edit</i></a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col l10 m10 s10">
+                <div class="input-field ">
+                  <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+                  <input id="icon_marca" type="text" class="validate"  minlength="2" maxlength="30" pattern = "[a-zA-ZñÑáéíóúÁÉÍÓÚ0-9\s ]*" disabled="disabled" [(ngModel)]="itemModificar.Marca" >
+                  <label for="icon_marca" data-error="Marca vacía o Incorrecta" >Marca</label>
+                </div>
+              </div>
+              <div class="col l2 m2 s2">
+                <a class="button-collapse" onclick="icon_marca.disabled = false"><i  style="padding-top: 40px; cursor: pointer" class="material-icons left">mode_edit</i></a>
+              </div>
+            </div>
+          </div>
+          <!--segunda columna-->
+          <div class="col l4 m4 s12">
+            <div class="row">
+              <div class="col l10 m10 s10">
+                <div class="input-field">
+                  <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+                  <textarea id="icon_descripcion" class="materialize-textarea" minlength="5" maxlength="100" disabled="disabled" [(ngModel)]="itemModificar.Descripcion" ></textarea>
+                  <label for="icon_descripcion" data-error="Descripción vacía o Incompleta">Descripción</label>
+                </div>
+              </div>
+              <div class="col l2 m2 s2">
+                <a class="button-collapse" onclick="icon_descripcion.disabled = false"><i  style="padding-top: 40px; cursor: pointer" class="material-icons left">mode_edit</i></a>
+              </div>
+            </div>
+            <div style="padding-top: 9%;">
+              <form action="#">
+                <p>
+                  <i class="material-icons prefix" style="color:#009688">keyboard_arrow_right</i>
+                  <input type="checkbox" id="test01" disabled="disabled" [(ngModel)]="itemModificar.Es_Dispositivo"/>
+                  <label for="test01">Dispositivo</label>
+                </p>
+              </form>
+            </div>
+
+          </div>
+          <!--tercera columna-->
+          <div class="col l4 m4 s12" >
+            <div class="row">
+              <div class="col l10 offset-l1 ">
+                <div class="card-panel blue-grey lighten-5 ">
+                  <h6 class="center" style="color:#9e9e9e">- Cargar Foto -</h6>
+                  <div class="input-field" >
+                    <select materialize="material_select" [materializeSelectOptions]="selectOptions" [(ngModel)]="foto.tipo">
+                      <option *ngFor="let tiposFoto of tiposFotos" [value]="tiposFoto" >{{tiposFoto}}</option>
+                    </select>
+                  </div>
+                  <form action="#">
+                    <div class="file-field input-field">
+                      <div class="btn" >
+                        <i class="material-icons">camera_enhance</i>
+                        <input type="file" >
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" >
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="right" style="padding-top: 25%; padding-right: 6%;">
+              <a (click)="modificar()" class="btn waves-effect waves-light"  style="font-size: 16px">Guardar
+                <i class="material-icons right">send</i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--boton para cancelar-->
+  <div class="section">
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+      <a (click)="cancelar()" class="btn-floating btn-large waves-effect waves-light red right">
+        <i class="material-icons">clear</i>
+      </a>
+    </div>
+  </div>
+</div>

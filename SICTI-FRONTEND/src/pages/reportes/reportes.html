@@ -1,0 +1,157 @@
+<nav class="light-blue darken-4" >
+  <div class="nav-wrapper navbar-fixed" >
+    <a href="#" (click)="openMenu()"data-activates="nav-mobile" class="button-collapse show-on-large left"><i class="material-icons left">menu</i></a>
+    <a href="#!" class="brand-logo">{{title}}</a>
+  </div>
+</nav>
+
+
+<ion-content>
+<div>
+  <div id="reportes" class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col l2 m2 s6">
+          <div materialize>
+            <div materialize class="input-field">
+              <label for="Fecha" class="active">desde</label>
+              <input   materialize="pickadate" [materializeParams]="[{format: 'yyyy-mm-dd',selectMonths: true, selectYears: 15}]" id="today" class="datepicker" type="date" style="padding-top: 14px" [(ngModel)]="reporte.Fecha_Inicial">
+              <script>
+              document.getElementById("today").valueAsDate = new Date()
+              </script>
+            </div>
+          </div>
+        </div>
+        <div class="col l2 m2 s6">
+          <div materialize>
+            <div class="input-field">
+              <label for="Fecha_vencimiento" class="active" >hasta</label>
+              <input  materialize="pickadate" class="datepicker" [materializeParams]="[{format: 'yyyy-mm-dd',selectMonths: true, selectYears: 15}]" id="Fecha_vencimiento" type="text"  style="padding-top: 14px" [(ngModel)]="reporte.Fecha_Final">
+              <script>
+              new Datepicker('.datepicker');
+              </script>
+            </div>
+          </div>
+        </div>
+        <div class="col l4 m12 s12" style="padding-top: 12px">
+          <div class="input-field">
+            <select materialize="material_select" [materializeSelectOptions]="selectOptions" [(ngModel)]="busqueda">
+              <option *ngFor="let tiposBusqueda of tiposBusquedas" [value]="tiposBusqueda">{{tiposBusqueda}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col l2 m6 s6">
+          <div class="right" style="padding-top: 25%;">
+            <a  (click)="crear()" class="btn waves-effect waves-light"  style="font-size: 13px">Consultar
+              <i class="material-icons right">send</i>
+            </a>
+          </div>
+        </div>
+        <div class="col l2 m6 s6">
+          <div class="right" style="padding-top: 25%;">
+            <a  (click)="pdf()" class="btn waves-effect waves-light"  style="font-size: 13px">PDF
+              <i class="material-icons right">send</i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="busqueda=='Movimientos'">
+    <table  materialize class="centered table centered striped" style="font-size: 15px">
+      <thead>
+        <tr>
+          <th></th>
+          <th data-field="id">Fecha</th>
+          <th data-field="nombre">Nombre</th>
+          <th data-field="cantidad">Cantidad</th>
+          <th data-field="cantidad">Tipo</th>
+          <th data-field="cantidad">Detalle</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- angular 2 for -->
+        <tr *ngFor="let ingresoEgreso of IngresosEgresos">
+          <td>
+            <!-- evento change y atributo por defecto checked false, se agrega como id el id del usuario
+            para luego saber que checkbox le pertenece a cada usuario
+            <input   (change)="select(usuario)" id={{usuario.url}} type="checkbox" class="filled-in"/>
+            <label  attr.for="{{usuario.url}}"></label>-->
+          </td>
+          <td>{{ingresoEgreso.Fecha}}</td>
+          <td>{{ingresoEgreso.Item.Nombre}}</td>
+          <td>{{ingresoEgreso.Cantidad}}</td>
+          <td>{{ingresoEgreso.Tipo}}</td>
+          <td>{{ingresoEgreso.Detalle}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="busqueda=='Préstamos'">
+  <table  materialize class="centered table centered striped" style="font-size: 15px">
+    <thead>
+      <tr>
+        <th></th>
+        <th data-field="id">Fecha</th>
+        <th data-field="nombre">Acta</th>
+        <th data-field="cantidad">Nombre</th>
+        <th data-field="cantidad">Cantidad</th>
+        <th data-field="cantidad">Detalle</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- angular 2 for -->
+      <tr *ngFor="let Prestamo of Prestamos">
+        <td>
+          <!-- evento change y atributo por defecto checked false, se agrega como id el id del usuario
+          para luego saber que checkbox le pertenece a cada usuario
+          <input   (change)="select(usuario)" id={{usuario.url}} type="checkbox" class="filled-in"/>
+          <label  attr.for="{{usuario.url}}"></label>-->
+        </td>
+        <td>{{Prestamo.Fecha}}</td>
+        <td>{{Prestamo.Acta}}</td>
+        <td>{{Prestamo.Item.Nombre}}</td>
+        <td>{{Prestamo.Cantidad}}</td>
+        <td>{{Prestamo.Detalle}}</td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="busqueda=='Existencias'">
+<table  materialize class="centered table centered striped" style="font-size: 15px">
+  <thead>
+    <tr>
+      <th></th>
+      <th data-field="id">Código</th>
+      <th data-field="nombre">Nombre</th>
+      <th data-field="cantidad">Cantidad</th>
+      <th data-field="cantidad">Disponible</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- angular 2 for -->
+    <tr *ngFor="let existencia of Existencias">
+      <td>
+        <!-- evento change y atributo por defecto checked false, se agrega como id el id del usuario
+        para luego saber que checkbox le pertenece a cada usuario
+        <input   (change)="select(usuario)" id={{usuario.url}} type="checkbox" class="filled-in"/>
+        <label  attr.for="{{usuario.url}}"></label>-->
+      </td>
+
+      <td>{{existencia.Codigo}}</td>
+      <td>{{existencia.Nombre}}</td>
+      <td>{{existencia.Stock}}</td>
+      <td>{{existencia.Stock_Disponible}}</td>
+
+    </tr>
+  </tbody>
+</table>
+</div>
+
+</div>
+</div>
+</ion-content>

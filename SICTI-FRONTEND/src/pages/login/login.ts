@@ -6,7 +6,7 @@ import {Usuario} from '../usuario/usuario.model';
 import {UsuarioAuthService} from '../usuario/usuario.auth.service';
 import {Storage, LocalStorage} from '@ionic/storage.';
 import {Http, Headers} from '@angular/http';
-import {FORM_DIRECTIVES} from '@angular/common';
+import {FORM_DIRECTIVES} from '@angular2/common';
 import {JwtHelper} from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 import {Url} from '../../url';

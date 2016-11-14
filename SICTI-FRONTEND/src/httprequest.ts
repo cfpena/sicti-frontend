@@ -1,24 +1,24 @@
 
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Storage, LocalStorage } from 'ionic-angular';
-import { NavController, Loading, Toast } from 'ionic-angular';
+import { NavController, Toast } from 'ionic-angular';
 import { Url } from './url';
 import {Load} from './loading';
-
+import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
+import { Storage } from '@ionic/storage';
 export class HttpRequest {
 
     url = new Url();
     local: Storage = new Storage(LocalStorage);
     constructor(private http: Http) {}
     presentToast(text: any, nav: NavController) {
-        let toast = Toast.create({
+        let toast = Toast.caller({
 
 
             message: text.json()['detail'],
             duration: 3000
         });
-        nav.present(toast);
+        nav.push(toast);
     }
     getToken(nav: NavController) {
         return this.local.get('auth').then(res => {

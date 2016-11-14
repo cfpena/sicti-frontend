@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import {Storage, LocalStorage} from 'ionic-angular';
+import {Storage} from '@ionic/storage';
+
 import {PrincipalPage} from '../principal/principal';
 import {Usuario} from '../usuario/usuario.model';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import {Url} from '../../url';
 import {HttpRequest} from '../../httprequest';
-
+import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
 
 
 

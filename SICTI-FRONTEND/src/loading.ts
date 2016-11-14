@@ -1,7 +1,7 @@
 import {NavController, Loading,MenuController, Toast} from 'ionic-angular';
 
 export class Load{
-loading = Loading.create({
+loading = Loading.caller({
    spinner: 'hide',
 content: `
 <div materialize class="preloader-wrapper big active">
@@ -52,7 +52,7 @@ content: `
 constructor(){};
 
 present(nav: NavController){
- return  nav.present(this.loading);
+ return  nav.push(this.loading);
 
 }
 dismiss(){

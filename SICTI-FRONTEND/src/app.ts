@@ -1,5 +1,5 @@
 import {Component, ViewChild,OnInit} from '@angular/core';
-import {App, ionicBootstrap, Platform, Nav} from 'ionic-angular';
+import {App, Platform, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {LoginPage} from './pages/login/login';
 import {PrincipalPage}  from './pages/principal/principal';
@@ -12,7 +12,9 @@ import {ReportesPage} from './pages/reportes/reportes';
 import {UsuarioPage} from './pages/usuario/usuario';
 import {UsuarioAuthService} from './pages/usuario/usuario.auth.service';
 import {MaterializeDirective} from "./materialize-directive";
-import {Storage, LocalStorage} from 'ionic-angular';
+//import {Storage, LocalStorage} from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
 
 
 
@@ -21,8 +23,7 @@ import {Storage, LocalStorage} from 'ionic-angular';
 
 @Component({
   templateUrl: 'build/app.html',
-  providers: [UsuarioAuthService],
-  directives: [MaterializeDirective],
+
 })
 export class MyApp implements OnInit {
   @ViewChild(Nav) nav: Nav;
@@ -72,5 +73,3 @@ export class MyApp implements OnInit {
   ngOnInit() {
   }
 }
-
-ionicBootstrap(MyApp,[UsuarioAuthService]);

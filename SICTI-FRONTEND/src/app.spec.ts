@@ -1,4 +1,4 @@
-import { setBaseTestProviders , describe, beforeEach, it,expect,inject} from '@angular/core/testing';
+/*import { setBaseTestProviders , describe, beforeEach, it,expect,inject} from '@angular/core/testing';
 import { MyApp } from './app';
 import {UsuarioAuthService} from './pages/usuario/usuario.auth.service';
 import {UsuarioService} from './pages/usuario/usuario.service';
@@ -67,7 +67,7 @@ describe('Intregracion 1 logg in', () => {
   //  login.login();
     loginPage.login();
     expect(loginPage.isAuthenticated()).toBe(true);
-  });*/
+  });
 });
 
 
@@ -454,3 +454,4 @@ describe('Inventario', () => {
   });
 
 });
+*/

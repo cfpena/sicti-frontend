@@ -27,7 +27,7 @@ import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
 })
 export class MyApp implements OnInit {
   @ViewChild(Nav) nav: Nav;
-  local: Storage = new Storage(LocalStorage);
+  local: Storage = new Storage();
   rootPage: any = LoginPage;
 
   pages: Array<{title: string, icon: string,component: any}>

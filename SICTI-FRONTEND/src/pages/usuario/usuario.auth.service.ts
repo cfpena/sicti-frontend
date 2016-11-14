@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
-import {Storage} from '@ionic/storage';
+//import { Http, Headers } from '@angular/http';
+//import {Storage} from '@ionic/storage';
 
 import {PrincipalPage} from '../principal/principal';
 import {Usuario} from '../usuario/usuario.model';
@@ -9,13 +9,16 @@ import 'rxjs/add/operator/toPromise';
 import {Url} from '../../url';
 import {HttpRequest} from '../../httprequest';
 import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
+import {Http, Response, Headers, Request, RequestOptions, RequestMethod, URLSearchParams} from '@angular/http';
+import {LocalStorageService} from "angular-2-local-storage"
+import { Storage } from '@ionic/storage';
 
 
 
 @Injectable()
 export class UsuarioAuthService {
     loggedIn: Boolean = false;
-    local: Storage = new Storage(LocalStorage);
+    local: Storage = new Storage();
     url= new Url()
     httprequest:HttpRequest;
 

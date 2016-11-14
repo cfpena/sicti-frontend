@@ -1,16 +1,19 @@
 
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+//import { Http, Headers, Response } from '@angular/http';
+import {Http, Response, Headers, Request, RequestOptions, RequestMethod, URLSearchParams} from '@angular/http';
 import { NavController, Toast } from 'ionic-angular';
 import { Url } from './url';
 import {Load} from './loading';
-import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
+//import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
+import {LocalStorageService} from "angular-2-local-storage"
 import { Storage } from '@ionic/storage';
+//import { localforage } from 'localforage';
 export class HttpRequest {
 
     url = new Url();
-    local: Storage = new Storage(LocalStorage);
-    constructor(private http: Http) {}
+    local: Storage = new Storage();
+    constructor(public http: Http) {}
     presentToast(text: any, nav: NavController) {
         let toast = Toast.caller({
 

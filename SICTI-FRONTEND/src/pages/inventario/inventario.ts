@@ -214,7 +214,7 @@ export class InventarioPage implements OnInit{
         //console.log('buscar item/kit');
         if (this.esKit){
           this.kitService.getBuscar(this.descripcionItem,this.navController).then(kits => {
-            this.listaFiltradaKit = kits;
+            this.listaFiltradaKit = kits as Kit[];
             return kits; }).then(kits => {
             if (this.listaFiltradaKit.length==0){
               this.presentToast('No existe un kit para agregar');
@@ -223,7 +223,7 @@ export class InventarioPage implements OnInit{
           })
         }else{
           this.itemService.getBuscarItem(this.descripcionItem,this.navController).then(items => {
-            this.listaFiltradaItem = items;
+            this.listaFiltradaItem = items as ITEM[];
             return items; }).then(items => {
             if (this.listaFiltradaItem.length==0){
               this.presentToast('No existe un ítem para agregar');

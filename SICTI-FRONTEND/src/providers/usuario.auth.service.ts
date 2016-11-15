@@ -9,10 +9,10 @@ import 'rxjs/add/operator/toPromise';
 import {Url} from '../../url';
 import {HttpRequest} from '../app/httprequest';
 import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
-import {Http, Response, Headers, Request, RequestOptions, RequestMethod, URLSearchParams} from '@angular/http';
+import {Http, Headers, Request, RequestOptions, RequestMethod, URLSearchParams} from '@angular/http';
 import {LocalStorageService} from "angular-2-local-storage"
 import { Storage } from '@ionic/storage';
-
+import {Response} from 'angular2/http';
 
 
 @Injectable()

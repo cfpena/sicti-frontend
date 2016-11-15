@@ -1,12 +1,12 @@
 import { Injectable }     from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Persona } from '../pages/persona/persona.model';
 import {Url} from '../../url';
 import {UsuarioAuthService} from './usuario.auth.service';
 import {UsuarioService} from './usuario.service';
 import {HttpRequest} from '../app/httprequest';
 import {NavController} from 'ionic-angular';
-
+import {Response} from 'angular2/http';
 @Injectable()
 export class PersonaService {
     url = new Url();
@@ -19,7 +19,7 @@ export class PersonaService {
         getPersonas(nav: NavController) {
   //        console.log('get persona')
           return this.httprequest.get(this.url.base + this.url.persona,nav).then(result => {
-              let personas = result.json() as Persona[];
+              let personas =  JSON.parse(JSON.stringify(result)) as Persona[];
               return personas;
             })
         }
@@ -28,7 +28,7 @@ export class PersonaService {
     getBuscar(cadena: String, nav) {
 
       return this.httprequest.get(this.url.base + this.url.persona + this.url.buscar + cadena.toString(),nav).then(result => {
-          let personas = result.json() as Persona[];
+          let personas =  JSON.parse(JSON.stringify(result)) as Persona[];
           return personas;
         })
     }

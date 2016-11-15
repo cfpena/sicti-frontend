@@ -1,5 +1,5 @@
 import { Injectable }     from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers,  } from '@angular/http';
 import { Prestamo } from '../pages/prestamo/prestamo.model';
 import {ITEM} from '../pages/item/item.model';
 import { Acta } from '../pages/prestamo/acta.model';
@@ -9,6 +9,7 @@ import {UsuarioAuthService} from './usuario.auth.service';
 import {NavController} from 'ionic-angular';
 import {HttpRequest} from '../app/httprequest';
 import {Persona} from '../pages/persona/persona.model';
+import {Response} from 'angular2/http';
 
 @Injectable()
 export class PrestamoService {
@@ -22,15 +23,15 @@ constructor(private http: Http,
 
   getActas(nav: NavController) {
     return this.httprequest.get(this.url.base + this.url.acta, nav).then(result => {
-      let actas = result.json() as Acta[];
+      let actas =  JSON.parse(JSON.stringify(result)) as Acta[];
       return actas;
     })
   }
 
   llenarDevuelto(acta: Acta,nav: NavController){
       this.httprequest.post(this.url.base + this.url.devuelto,JSON.stringify({Acta: acta.url}),nav).then(result=>{
-        console.log(result.json())
-        acta.Devuelto=result.json();
+        console.log( JSON.parse(JSON.stringify(result)))
+        acta.Devuelto= JSON.parse(JSON.stringify(result));
       })
 
 
@@ -46,7 +47,7 @@ constructor(private http: Http,
     //console.log('voy a crear acta')
     //console.log(acta)
     return this.httprequest.post(this.url.base + this.url.acta, JSON.stringify(acta),nav).then(result=>{
-        let acta = result.json() as Acta
+        let acta =  JSON.parse(JSON.stringify(result)) as Acta
         for(let prestamo of listaPrestamo){
           prestamo.Cantidad = Number(prestamo.Cantidad)
           prestamo.Acta = acta.url
@@ -59,7 +60,7 @@ constructor(private http: Http,
   //obtener el último codigo de actas
     getUltimaActa(nav: NavController) {
       return this.httprequest.get(this.url.base + this.url.acta, nav).then(result => {
-        let actas = result.json() as Acta[];
+        let actas =  JSON.parse(JSON.stringify(result)) as Acta[];
         if (actas.length == 0){
           return 0;
         }else{
@@ -88,14 +89,14 @@ constructor(private http: Http,
   llenarPrestador(acta: Acta,nav: NavController){
     //console.log('llenar prestador')
     return this.httprequest.get(String(acta.Prestador),nav).then(prestador=>{
-      acta.Prestador =  prestador.json() as Persona;
+      acta.Prestador =   JSON.parse(JSON.stringify(prestador)) as Persona;
     });
 
   }
 
   getPrestamos(nav: NavController) {
     return this.httprequest.get(this.url.base + this.url.prestamo, nav).then(result => {
-      let prestamos = result.json() as Prestamo[];
+      let prestamos =  JSON.parse(JSON.stringify(result)) as Prestamo[];
       return prestamos;
     })
   }
@@ -103,7 +104,7 @@ constructor(private http: Http,
   llenarItem(prestamo: any,nav: NavController){
     //console.log('llenar item')
     return this.httprequest.get(String(prestamo.Item),nav).then(result=>{
-      prestamo.Item =  result.json() as ITEM;
+      prestamo.Item =   JSON.parse(JSON.stringify(result)) as ITEM;
       return prestamo;
     });
   }
@@ -111,7 +112,7 @@ constructor(private http: Http,
   getBuscar(cadena: String, nav: NavController) {
     return this.httprequest.get(this.url.base + this.url.prestamo + this.url.buscar + cadena,nav)
     .then(result => {
-      let prestamos = result.json() as Prestamo[];
+      let prestamos =  JSON.parse(JSON.stringify(result)) as Prestamo[];
       return prestamos;
 
     }).catch(error=>{

@@ -1,11 +1,11 @@
 import { Injectable }     from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import {NavController} from 'ionic-angular';
 import { Usuario,Group } from '../pages/usuario/usuario.model';
 import {Url} from '../../url';
 import {UsuarioAuthService} from './usuario.auth.service';
 import {HttpRequest} from '../app/httprequest';
-
+import {Response} from 'angular2/http';
 
 @Injectable()
 export class UsuarioService {
@@ -21,7 +21,7 @@ export class UsuarioService {
     getUsuarios(nav: NavController) {
 
       return this.httprequest.get(this.url.base + this.url.usuario,nav).then(result => {
-          let usuarios = result.json() as Usuario[];
+          let usuarios = JSON.parse(JSON.stringify(result)) as Usuario[];
           return usuarios;
         })
     }
@@ -29,7 +29,8 @@ export class UsuarioService {
     getBuscar(cadena: String, nav) {
 
       return this.httprequest.get(this.url.base + this.url.usuario + this.url.buscar + cadena.toString(),nav).then(result => {
-          let usuarios = result.json() as Usuario[];
+          let usuarios = JSON.parse(JSON.stringify(result))
+          //let usuarios =  JSON.parse(JSON.stringify(result)) as Usuario[];
           return usuarios;
         })
     }
@@ -39,7 +40,7 @@ export class UsuarioService {
     }
     llenarTipo(usuario: Usuario,nav: NavController){
       return this.httprequest.get(String(usuario.groups[0]),nav).then(tipo=>{
-      usuario.groups[0] =  tipo.json() as Group;
+      usuario.groups[0] = JSON.parse(JSON.stringify(tipo)) as Group;
     });
 
     }
@@ -58,14 +59,14 @@ export class UsuarioService {
 
     getTipos(nav: NavController) {
             return this.httprequest.get(this.url.base + this.url.tiposUsuarios, nav).then(result => {
-          let tipos = result.json() as Group[];
+          let tipos = JSON.parse(JSON.stringify(result)) as Group[];
           return tipos;
         });
     }
 
     CompararEmail(cadena: String,nav: NavController) {
       return this.httprequest.get(this.url.base + this.url.usuario,nav).then(result => {
-          let usuarios = result.json() as Usuario[];
+          let usuarios = JSON.parse(JSON.stringify(result)) as Usuario[];
           for(var usuario of usuarios){
             console.log(usuario.Email);
             console.log(cadena);

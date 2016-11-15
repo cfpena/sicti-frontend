@@ -85,7 +85,8 @@ export class ItemPage implements OnInit {
             this.itemNuevo.Imagen = this.foto
             else this.itemNuevo.Imagen=null
             this.itemService.createItem(this.itemNuevo,this.navController).then(result => {
-              let r = result.json() as ITEM
+              //let r = result  as ITEM
+              let r =  JSON.parse(JSON.stringify(result))  as ITEM
               //this.itemService.uploadImagen(r.url,this.itemNuevo.Imagen,this.navController)
               this.listar();
               this.presentToast('item creado correctamente');
@@ -242,7 +243,9 @@ export class ItemPage implements OnInit {
 
     buscar() {
         if (this.busqueda.valor.trim() != "") {
-            this.itemService.getBuscarItem(this.busqueda.valor,this.navController).then(items => { this.items = items; return items })
+            this.itemService.getBuscarItem(this.busqueda.valor,this.navController)
+            .then(items => { this.items = items as ITEM[];
+               return items })
         }
         else { this.listar() }
     }

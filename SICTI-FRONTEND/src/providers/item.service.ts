@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import {Url} from '../../url';
 import {ITEM} from '../pages/item/item.model';
 import {UsuarioAuthService} from './usuario.auth.service';
 import {HttpRequest} from '../app/httprequest';
 import {NavController} from 'ionic-angular';
-
+import {Response} from 'angular2/http';
 
 
 @Injectable()
@@ -20,7 +20,7 @@ export class ItemService {
 
     getItems(nav: NavController) {
       return this.httprequest.get(this.url.base + this.url.item,nav).then(result => {
-          let items = result.json() as ITEM[];
+          let items =  JSON.parse(JSON.stringify(result)) as ITEM[];
           return items;
         })
     }
@@ -28,7 +28,7 @@ export class ItemService {
     getBuscarItem(cadena: String,nav: NavController) {
     return this.httprequest.get(this.url.base + this.url.item + this.url.buscar + cadena,nav)
     .then(result => {
-          let items = result.json() as ITEM[];
+          let items =  JSON.parse(JSON.stringify(result)) as ITEM[];
           return items;
 
         }).catch(error=>{
@@ -50,7 +50,7 @@ export class ItemService {
     //obtener el codigo del ultimo item creado
     getUltimoCodItem(nav: NavController) {
       return this.httprequest.get(this.url.base + this.url.item,nav).then(result => {
-          let items = result.json() as ITEM[];
+          let items =  JSON.parse(JSON.stringify(result)) as ITEM[];
           if (items.length == 0){
             return 0;
           }else{

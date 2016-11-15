@@ -150,7 +150,7 @@ public toastCtrl: ToastController) {
   buscarItem(){
     if (this.descripcionItem!==''){
       this.itemService.getBuscarItem(this.descripcionItem,this.navController).then(items => {
-        this.listaFiltradaItem = items;
+        this.listaFiltradaItem = items as ITEM[];
         return items; }).then(items => {
         if (this.listaFiltradaItem.length==0){
           this.presentToast('No existe un ítem para agregar');

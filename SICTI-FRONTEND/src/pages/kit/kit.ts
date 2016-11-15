@@ -189,7 +189,8 @@ export class KitPage implements OnInit{
       //Busqueda de Kits en la tabla principal
       buscar() {
         if (this.busqueda.valor.trim() != "") {
-          this.kitService.getBuscar(this.busqueda.valor,this.navController).then(kits => { this.kits = kits; return kits }).then(kits => {
+          this.kitService.getBuscar(this.busqueda.valor,this.navController).then(kits =>
+            { this.kits = kits as Kit[]; return kits }).then(kits => {
           })
         }
         else { this.listar() }
@@ -201,7 +202,7 @@ export class KitPage implements OnInit{
         if (this.descripcionItem.trim()!= "") {
 
           this.itemService.getBuscarItem(this.descripcionItem,this.navController).then(items => {
-            this.listaFiltradaItem = items;
+            this.listaFiltradaItem = items as ITEM[];
             return items;
           }).then(items => {
             if (this.listaFiltradaItem.length==0){

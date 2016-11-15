@@ -1,11 +1,11 @@
 import { Injectable }     from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import {NavController} from 'ionic-angular';
 import {Url} from '../../url';
 import {HttpRequest} from '../app/httprequest';
 import {Reporte} from '../pages/reportes/reportes.model';
 import {ITEM} from '../pages/item/item.model';
-
+import {Response} from 'angular2/http';
 @Injectable()
 export class ReporteService {
     url = new Url();
@@ -36,7 +36,7 @@ export class ReporteService {
 
     getReporteExistencia(reporte: Reporte,nav: NavController){
       return this.httprequest.get(this.url.base + this.url.reporteExistencia,nav).then(result => {
-          let existencias = result.json() as ITEM[];
+          let existencias =  JSON.parse(JSON.stringify(result)) as ITEM[];
           return existencias;
         })
 }

@@ -55,10 +55,11 @@ export class LoginPage implements OnInit {
     }
 
     authSuccess(data) {
-        console.log(data.json().token)
+        console.log(data .token)
         this.nav.setRoot(InventarioPage);
         this.errores.auth = null;
-        this.local.set('auth',{token: data.json().token});
+        //this.local.setJson('auth',{token: data .token});
+        this.local.setItem('auth',data.stringify().token);
         this.presentToast("Acceso exitoso")
 
     }

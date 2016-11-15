@@ -9,6 +9,7 @@ import { IngresoEgreso } from './ingresoegreso.model';
 import { ITEM } from '../item/item.model';
 import { Prestamo } from '../prestamo/prestamo.model'
 import { ToastController } from 'ionic-angular';
+import {Http, Response} from 'angular2/http';
 
 /*
   Generated class for the ReportesPage page.
@@ -91,10 +92,10 @@ export class ReportesPage {
             //console.log(this.reporte.Fecha_Final)
             if (this.busqueda == 'Movimientos') {
                 this.service.getReporteInventario(this.reporte, this.navController).then(result => {
-                    this.IngresosEgresos = result.json() as IngresoEgreso[]
+                    this.IngresosEgresos =  JSON.parse(JSON.stringify(result))  as IngresoEgreso[]
                     for (let ingresoEgreso of this.IngresosEgresos) {
                         this.service.httprequest.get(String(ingresoEgreso.Item), this.navController).then(result => {
-                            ingresoEgreso.Item = result.json() as ITEM
+                            ingresoEgreso.Item =  JSON.parse(JSON.stringify(result))  as ITEM
 
                         })
                     }
@@ -104,13 +105,13 @@ export class ReportesPage {
                 })
             } else if (this.busqueda == 'Préstamos') {
                 this.service.getReportePrestamo(this.reporte, this.navController).then(result => {
-                    this.Prestamos = result.json() as Prestamo[]
+                    this.Prestamos =  JSON.parse(JSON.stringify(result))  as Prestamo[]
                     for (let prestamo of this.Prestamos) {
                         this.service.httprequest.get(String(prestamo.Item), this.navController).then(result => {
-                            prestamo.Item = result.json() as ITEM
+                            prestamo.Item =  JSON.parse(JSON.stringify(result))  as ITEM
                         })
                         this.service.httprequest.get(String(prestamo.Acta), this.navController).then(result => {
-                            prestamo.Acta = result.json()['Codigo']
+                            prestamo.Acta =  JSON.parse(JSON.stringify(result)) ['Codigo']
                         })
                     }
 

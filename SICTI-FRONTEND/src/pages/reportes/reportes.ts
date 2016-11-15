@@ -4,7 +4,7 @@ import { Kit } from '../kit/kit.model';
 import { MaterializeDirective } from "../../materialize-directive";
 import { DatePicker } from 'ionic-native';
 import { Reporte } from './reportes.model'
-import { ReporteService } from './reportes.service'
+import { ReporteService } from '../../providers/reportes.service'
 import { IngresoEgreso } from './ingresoegreso.model';
 import { ITEM } from '../item/item.model';
 import { Prestamo } from '../prestamo/prestamo.model'

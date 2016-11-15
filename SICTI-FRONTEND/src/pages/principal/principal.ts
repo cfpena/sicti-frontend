@@ -1,6 +1,6 @@
 import {Component,OnInit} from '@angular/core';
 import {NavController,MenuController} from 'ionic-angular';
-import {UsuarioAuthService} from '../usuario/usuario.auth.service';
+import {UsuarioAuthService} from '../../providers/usuario.auth.service';
 import { Http, Headers } from '@angular/http';
 import {Url} from '../../url';
 import {InventarioPage} from '../inventario/inventario';

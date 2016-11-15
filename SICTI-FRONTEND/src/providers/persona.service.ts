@@ -1,10 +1,10 @@
 import { Injectable }     from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { Persona } from './persona.model';
+import { Persona } from '../pages/persona/persona.model';
 import {Url} from '../../url';
-import {UsuarioAuthService} from '../usuario/usuario.auth.service';
-import {UsuarioService} from '../usuario/usuario.service';
-import {HttpRequest} from '../../httprequest';
+import {UsuarioAuthService} from './usuario.auth.service';
+import {UsuarioService} from './usuario.service';
+import {HttpRequest} from '../app/httprequest';
 import {NavController} from 'ionic-angular';
 
 @Injectable()

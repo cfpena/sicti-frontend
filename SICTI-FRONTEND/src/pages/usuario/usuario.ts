@@ -4,7 +4,7 @@ import {Usuario, Group} from './usuario.model';
 import {MaterializeDirective} from "../../materialize-directive";
 import {Validator} from "validator.ts/Validator";
 import { Http, Headers } from '@angular/http';
-import {UsuarioService} from './usuario.service';
+import {UsuarioService} from '../../providers/usuario.service';
 import {Url} from '../../url';
 import {Load} from '../../loading';
 import { ToastController } from 'ionic-angular';

@@ -7,8 +7,8 @@ import {Kit} from '../kit/kit.model';
 import {KitDetalle} from '../kit/kit.model';
 import {Url} from '../../url'
 import {Http, Headers} from '@angular/http';
-import {KitService} from './kit.service';
-import {ItemService} from '../item/item.service';
+import {KitService} from '../../providers/kit.service';
+import {ItemService} from '../../providers/item.service';
 import { ToastController } from 'ionic-angular';
 
 @Component({

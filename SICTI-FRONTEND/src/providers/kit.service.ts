@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import {Url} from '../../url';
-import {Kit} from './kit.model';
-import {KitDetalle} from './kit.model';
-import {ITEM} from '../item/item.model';
-import {UsuarioAuthService} from '../usuario/usuario.auth.service';
-import {HttpRequest} from '../../httprequest';
+import {Kit} from '../pages/kit/kit.model';
+import {ITEM} from '../pages/item/item.model';
+import {KitDetalle} from '../pages/kit/kit.model';
+import {UsuarioAuthService} from './usuario.auth.service';
+import {HttpRequest} from '../app/httprequest';
 import {NavController} from 'ionic-angular';
 
 @Injectable()

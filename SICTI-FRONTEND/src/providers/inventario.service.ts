@@ -1,13 +1,13 @@
 import { Injectable }     from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
-import { IngresoEgreso } from './inventario.model';
-import { FacturaIngreso } from './inventario.model';
+import { IngresoEgreso } from '../pages/inventario/inventario.model';
+import { FacturaIngreso } from '../pages/inventario/inventario.model';
 import {Url} from '../../url';
-import {UsuarioAuthService} from '../usuario/usuario.auth.service';
+import {UsuarioAuthService} from './usuario.auth.service';
 import {NavController} from 'ionic-angular';
-import {HttpRequest} from '../../httprequest';
-import {Persona} from '../persona/persona.model';
-import {ITEM} from '../item/item.model';
+import {HttpRequest} from '../app/httprequest';
+import {Persona} from '../pages/persona/persona.model';
+import {ITEM} from '../pages/item/item.model';
 
 @Injectable()
 export class InventarioService {

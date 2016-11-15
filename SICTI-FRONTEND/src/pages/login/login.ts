@@ -3,7 +3,7 @@ import {NavController,Toast} from 'ionic-angular';
 import {PrincipalPage} from '../principal/principal';
 import {InventarioPage} from '../inventario/inventario';
 import {Usuario} from '../usuario/usuario.model';
-import {UsuarioAuthService} from '../usuario/usuario.auth.service';
+import {UsuarioAuthService} from '../../providers/usuario.auth.service';
 import {Storage, LocalStorage} from '@ionic/storage.';
 import {Http, Headers} from '@angular/http';
 import {FORM_DIRECTIVES} from '@angular2/common';
@@ -58,7 +58,7 @@ export class LoginPage implements OnInit {
         console.log(data.json().token)
         this.nav.setRoot(InventarioPage);
         this.errores.auth = null;
-        this.local.setJson('auth',{token: data.json().token});
+        this.local.set('auth',{token: data.json().token});
         this.presentToast("Acceso exitoso")
 
     }

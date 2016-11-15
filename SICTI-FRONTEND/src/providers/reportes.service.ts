@@ -2,9 +2,9 @@ import { Injectable }     from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import {NavController} from 'ionic-angular';
 import {Url} from '../../url';
-import {HttpRequest} from '../../httprequest';
-import {Reporte} from './reportes.model';
-import {ITEM} from '../item/item.model';
+import {HttpRequest} from '../app/httprequest';
+import {Reporte} from '../pages/reportes/reportes.model';
+import {ITEM} from '../pages/item/item.model';
 
 @Injectable()
 export class ReporteService {

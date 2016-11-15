@@ -4,7 +4,7 @@ import { Prestamo } from '../pages/prestamo/prestamo.model';
 import {ITEM} from '../pages/item/item.model';
 import { Acta } from '../pages/prestamo/acta.model';
 import { Devolucion } from '../pages/prestamo/devolucion.model';
-import {Url} from '../../url';
+import {Url} from './../url';
 import {UsuarioAuthService} from './usuario.auth.service';
 import {NavController} from 'ionic-angular';
 import {HttpRequest} from '../app/httprequest';

@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import {Platform, MenuController, Nav, IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { ContactPage } from '../pages/contact/contact';
-import {LoginPage} from './pages/login/login';
-import {UsuarioPage} from './pages/usuario/usuario';
-import {PersonaPage} from './pages/persona/persona';
-import {InventarioPage} from './pages/inventario/inventario';
-import {KitPage} from './pages/kit/kit';
-import {ItemPage} from './pages/item/item';
+
+import {LoginPage} from '../pages/login/login';
+import {UsuarioPage} from '../pages/usuario/usuario';
+import {PersonaPage} from '../pages/persona/persona';
+import {InventarioPage} from '../pages/inventario/inventario';
+import {KitPage} from '../pages/kit/kit';
+import {ItemPage} from '../pages/item/item';
 import {MaterializeDirective} from "../../materialize-directive";
 import {InventarioService} from '../providers/inventario.service';
 import {PersonaService} from '../providers/persona.service';
@@ -21,7 +21,6 @@ import {PrestamoService} from '../providers/prestamo.service';
 @NgModule({
   declarations: [
     MyApp,
-    ContactPage,  
     LoginPage,
     UsuarioPage,
     KitPage,
@@ -33,7 +32,6 @@ import {PrestamoService} from '../providers/prestamo.service';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    ContactPage,
     LoginPage,
     UsuarioPage,
     KitPage,

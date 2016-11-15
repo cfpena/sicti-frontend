@@ -4,7 +4,7 @@ import {PrincipalPage} from '../principal/principal';
 import {InventarioPage} from '../inventario/inventario';
 import {Usuario} from '../usuario/usuario.model';
 import {UsuarioAuthService} from '../../providers/usuario.auth.service';
-import {Storage, LocalStorage} from '@ionic/storage.';
+import {Storage} from '@ionic/storage';
 import {Http, Headers} from '@angular/http';
 import {FORM_DIRECTIVES} from '@angular2/common';
 import {JwtHelper} from 'angular2-jwt';
@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
     errores = {
         auth: '',
     };
-    local: Storage = new Storage(LocalStorage);
+    local: Storage = new Storage();
     constructor(private http: Http,
         private nav: NavController,
         private usuarioAuthService: UsuarioAuthService,
@@ -59,7 +59,7 @@ export class LoginPage implements OnInit {
         this.nav.setRoot(InventarioPage);
         this.errores.auth = null;
         //this.local.setJson('auth',{token: data .token});
-        this.local.setItem('auth',data.stringify().token);
+        this.local.set('auth',data.stringify().token);
         this.presentToast("Acceso exitoso")
 
     }

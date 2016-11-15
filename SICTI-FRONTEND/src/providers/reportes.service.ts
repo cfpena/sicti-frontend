@@ -1,7 +1,7 @@
 import { Injectable }     from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import {NavController} from 'ionic-angular';
-import {Url} from '../../url';
+import {Url} from './../url';
 import {HttpRequest} from '../app/httprequest';
 import {Reporte} from '../pages/reportes/reportes.model';
 import {ITEM} from '../pages/item/item.model';

@@ -3,7 +3,7 @@ import { NavController, MenuController, Toast, Modal,Platform } from 'ionic-angu
 import { ITEM } from './item.model';
 import { MaterializeDirective } from "../../materialize-directive";
 import { Validator } from "validator.ts/Validator";
-import { Url } from '../../url'
+import { Url } from './url'
 import { Http, Headers } from '@angular/http';
 import {ItemService } from '../../providers/item.service';
 import {Camera} from 'ionic-native';

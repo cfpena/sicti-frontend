@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import {Url} from '../../url';
+import {Url} from './../url';
 import {Kit} from '../pages/kit/kit.model';
 import {ITEM} from '../pages/item/item.model';
 import {KitDetalle} from '../pages/kit/kit.model';

@@ -2,7 +2,7 @@ import { Injectable }     from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { IngresoEgreso } from '../pages/inventario/inventario.model';
 import { FacturaIngreso } from '../pages/inventario/inventario.model';
-import {Url} from '../../url';
+import {Url} from './../url';
 import {UsuarioAuthService} from './usuario.auth.service';
 import {NavController} from 'ionic-angular';
 import {HttpRequest} from '../app/httprequest';

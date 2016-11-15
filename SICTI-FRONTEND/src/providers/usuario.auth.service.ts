@@ -6,7 +6,7 @@ import {PrincipalPage} from '../pages/principal/principal';
 import {Usuario} from '../pages/usuario/usuario.model';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
-import {Url} from '../../url';
+import {Url} from './../url';
 import {HttpRequest} from '../app/httprequest';
 import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
 import {Http, Headers, Request, RequestOptions, RequestMethod, URLSearchParams} from '@angular/http';

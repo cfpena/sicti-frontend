@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import {Url} from '../../url';
+import {Url} from './../url';
 import {ITEM} from '../pages/item/item.model';
 import {UsuarioAuthService} from './usuario.auth.service';
 import {HttpRequest} from '../app/httprequest';

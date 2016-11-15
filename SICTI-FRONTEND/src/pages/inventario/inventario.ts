@@ -8,11 +8,11 @@ import {IngresoEgreso} from '../inventario/inventario.model';
 import {ITEM} from '../item/item.model';
 import {Kit} from '../kit/kit.model';
 import { Http, Headers } from '@angular/http';
-import {InventarioService} from '../inventario/inventario.service';
-import {PersonaService} from '../persona/persona.service';
-import {ItemService } from '../item/item.service';
-import {KitService } from '../kit/kit.service';
-import {UsuarioService } from '../usuario/usuario.service';
+import {InventarioService} from '../../providers/inventario.service';
+import {PersonaService} from '../../providers/persona.service';
+import {ItemService } from '../../providers/item.service';
+import {KitService } from '../../providers/kit.service';
+import {UsuarioService } from '../../providers/usuario.service';
 import { ToastController } from 'ionic-angular';
 
 

@@ -6,6 +6,15 @@ import {Url} from '../../url';
 import {InventarioPage} from '../inventario/inventario';
 //import { ToastController } from 'ionic-angular';
 
+import {MaterializeDirective} from "angular2-materialize";
+import { NgModule }      from '@angular/core';
+
+
+@NgModule({
+  declarations : [MaterializeDirective],
+})
+
+
 
 @Component({
   templateUrl: 'principal.html'

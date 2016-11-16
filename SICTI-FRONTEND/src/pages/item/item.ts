@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NavController, MenuController,Platform } from 'ionic-angular';
 import { ITEM } from './item.model';
-//import { MaterializeDirective } from "../../materialize-directive";
+
 import { Validator } from "validator.ts/Validator";
 //import { Url } from './url'
 import { Http } from '@angular/http';
@@ -9,6 +9,13 @@ import {ItemService } from '../../providers/item.service';
 import {Camera} from 'ionic-native';
 import { ToastController } from 'ionic-angular';
 
+import {MaterializeDirective} from "angular2-materialize";
+import { NgModule }      from '@angular/core';
+
+
+@NgModule({
+  declarations : [MaterializeDirective],
+})
 
 /*
   Generated class for the ItemPage page.

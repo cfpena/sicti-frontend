@@ -5,8 +5,7 @@ import {ITEM} from '../item/item.model';
 import {Persona} from '../persona/persona.model';
 //import {PersonaPage} from '../persona/persona';
 import {Prestamo} from '../prestamo/prestamo.model';
-//import {MaterializeDirective} from "../../materialize-directive";
-//import {DatePicker} from 'ionic-native';
+
 import {PrestamoService} from '../../providers/prestamo.service';
 //import {Url} from '../../url';
 import { Http } from '@angular/http';
@@ -18,6 +17,14 @@ import { Acta } from './acta.model';
 //import { Devolucion } from './devolucion.model';
 import { ToastController } from 'ionic-angular';
 
+
+import {MaterializeDirective} from "angular2-materialize";
+import { NgModule }      from '@angular/core';
+
+
+@NgModule({
+  declarations : [MaterializeDirective],
+})
 
 @Component({
 templateUrl: 'prestamo.html',
@@ -282,7 +289,7 @@ public toastCtrl: ToastController) {
      var yyyy = hoy.getFullYear();
      var codigoAnterior;
      let nuevoCodigo;
-     
+
   this.prestamoService.getUltimaActa(this.navController).then(codigoAnterior => {
   console.log("recibo ",codigoAnterior);
   codigoAnterior = codigoAnterior + 1;

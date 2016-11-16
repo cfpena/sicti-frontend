@@ -1,7 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
 import {NavController,MenuController} from 'ionic-angular';
 import {Usuario, Group} from './usuario.model';
-//import {MaterializeDirective} from "../../materialize-directive";
 import {Validator} from "validator.ts/Validator";
 import { Http } from '@angular/http';
 import {UsuarioService} from '../../providers/usuario.service';
@@ -10,6 +9,13 @@ import {Url} from '../../url';
 import { ToastController } from 'ionic-angular';
 
 
+import {MaterializeDirective} from "angular2-materialize";
+import { NgModule }      from '@angular/core';
+
+
+@NgModule({
+  declarations : [MaterializeDirective],
+})
 
 
 @Component({

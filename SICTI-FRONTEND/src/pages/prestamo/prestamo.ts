@@ -1,21 +1,21 @@
-import { Component, OnInit, Input, ViewChild  } from '@angular/core';
-import { NavController, MenuController , Toast } from 'ionic-angular';
+import { Component, OnInit, Input  } from '@angular/core';
+import { NavController, MenuController  } from 'ionic-angular';
 import {ITEM} from '../item/item.model';
-import {Kit} from '../kit/kit.model';
+//import {Kit} from '../kit/kit.model';
 import {Persona} from '../persona/persona.model';
-import {PersonaPage} from '../persona/persona';
+//import {PersonaPage} from '../persona/persona';
 import {Prestamo} from '../prestamo/prestamo.model';
-import {MaterializeDirective} from "../../materialize-directive";
-import {DatePicker} from 'ionic-native';
+//import {MaterializeDirective} from "../../materialize-directive";
+//import {DatePicker} from 'ionic-native';
 import {PrestamoService} from '../../providers/prestamo.service';
-import {Url} from '../../url';
-import { Http, Headers } from '@angular/http';
+//import {Url} from '../../url';
+import { Http } from '@angular/http';
 import {ItemService} from '../../providers/item.service';
 import {PersonaService} from '../../providers/persona.service';
 import {UsuarioService} from '../../providers/usuario.service';
 import { Validator } from "validator.ts/Validator";
 import { Acta } from './acta.model';
-import { Devolucion } from './devolucion.model';
+//import { Devolucion } from './devolucion.model';
 import { ToastController } from 'ionic-angular';
 
 
@@ -282,8 +282,7 @@ public toastCtrl: ToastController) {
      var yyyy = hoy.getFullYear();
      var codigoAnterior;
      let nuevoCodigo;
-     let dia, mes;
-
+     
   this.prestamoService.getUltimaActa(this.navController).then(codigoAnterior => {
   console.log("recibo ",codigoAnterior);
   codigoAnterior = codigoAnterior + 1;

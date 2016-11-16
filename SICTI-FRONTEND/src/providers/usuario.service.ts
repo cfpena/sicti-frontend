@@ -1,11 +1,11 @@
 import { Injectable }     from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import {NavController} from 'ionic-angular';
 import { Usuario,Group } from '../pages/usuario/usuario.model';
 import {Url} from './../url';
 import {UsuarioAuthService} from './usuario.auth.service';
 import {HttpRequest} from '../app/httprequest';
-import {Response} from 'angular2/http';
+//import {Response} from 'angular2/http';
 
 @Injectable()
 export class UsuarioService {

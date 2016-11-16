@@ -1,12 +1,12 @@
 import { Injectable }     from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import { Persona } from '../pages/persona/persona.model';
 import {Url} from './../url';
 import {UsuarioAuthService} from './usuario.auth.service';
 import {UsuarioService} from './usuario.service';
 import {HttpRequest} from '../app/httprequest';
 import {NavController} from 'ionic-angular';
-import {Response} from 'angular2/http';
+//import {Response} from 'angular2/http';
 @Injectable()
 export class PersonaService {
     url = new Url();

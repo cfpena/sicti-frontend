@@ -1,5 +1,5 @@
 import { Injectable }     from '@angular/core';
-import { Http, Headers,  } from '@angular/http';
+import { Http } from '@angular/http';
 import { Prestamo } from '../pages/prestamo/prestamo.model';
 import {ITEM} from '../pages/item/item.model';
 import { Acta } from '../pages/prestamo/acta.model';
@@ -9,7 +9,7 @@ import {UsuarioAuthService} from './usuario.auth.service';
 import {NavController} from 'ionic-angular';
 import {HttpRequest} from '../app/httprequest';
 import {Persona} from '../pages/persona/persona.model';
-import {Response} from 'angular2/http';
+//import {Response} from 'angular2/http';
 
 @Injectable()
 export class PrestamoService {

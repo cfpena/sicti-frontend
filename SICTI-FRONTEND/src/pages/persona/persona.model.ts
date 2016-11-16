@@ -1,5 +1,5 @@
-import {Validator} from "validator.ts/Validator";
-import {Contains, IsInt, IsLength, IsEmail, IsAlpha, IsAlphanumeric, Matches, NotEmpty} from "validator.ts/decorator/Validation";
+//import {Validator} from "validator.ts/Validator";
+import { IsLength, IsEmail, Matches, NotEmpty} from "validator.ts/decorator/Validation";
 
 
 export class Persona {

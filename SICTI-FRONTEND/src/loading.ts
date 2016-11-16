@@ -1,4 +1,4 @@
-import {NavController, Loading,MenuController, Toast} from 'ionic-angular';
+import {NavController, Loading} from 'ionic-angular';
 
 export class Load{
 loading = Loading.caller({

@@ -1,6 +1,6 @@
-import {ITEM} from '../item/item.model';
-import {Validator} from "validator.ts/Validator";
-import {Contains, IsInt, IsLength, IsEmail, IsAlpha, Matches, NotEmpty} from "validator.ts/decorator/Validation";
+//import {ITEM} from '../item/item.model';
+//import {Validator} from "validator.ts/Validator";
+import {IsInt, IsLength,  Matches, NotEmpty} from "validator.ts/decorator/Validation";
 
 export class Kit {
   url: string;

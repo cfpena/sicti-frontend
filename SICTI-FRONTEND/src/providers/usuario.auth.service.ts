@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 //import { Http, Headers } from '@angular/http';
 //import {Storage} from '@ionic/storage';
 
-import {PrincipalPage} from '../pages/principal/principal';
-import {Usuario} from '../pages/usuario/usuario.model';
-import {Observable} from 'rxjs/Observable';
+//import {PrincipalPage} from '../pages/principal/principal';
+//import {Usuario} from '../pages/usuario/usuario.model';
+//import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import {Url} from './../url';
 import {HttpRequest} from '../app/httprequest';
-import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
-import {Http, Headers, Request, RequestOptions, RequestMethod, URLSearchParams} from '@angular/http';
-import {LocalStorageService} from "angular-2-local-storage"
+//import { SessionStorage} from "angular2-localstorage/WebStorage";
+import {Http, Headers} from '@angular/http';
+//import {LocalStorageService} from "angular-2-local-storage"
 import { Storage } from '@ionic/storage';
-import {Response} from 'angular2/http';
+//import {Response} from 'angular2/http';
 
 
 @Injectable()
@@ -40,7 +40,7 @@ export class UsuarioAuthService {
     }
 */
     isAuthenticated() {
-      let result=false
+      //let result=false
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('Accept','application/json')

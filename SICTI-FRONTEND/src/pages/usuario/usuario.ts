@@ -1,12 +1,12 @@
-import { Component, OnInit, Input, ViewChild} from '@angular/core';
-import {NavController,MenuController, Toast} from 'ionic-angular';
+import { Component, OnInit, Input} from '@angular/core';
+import {NavController,MenuController} from 'ionic-angular';
 import {Usuario, Group} from './usuario.model';
-import {MaterializeDirective} from "../../materialize-directive";
+//import {MaterializeDirective} from "../../materialize-directive";
 import {Validator} from "validator.ts/Validator";
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import {UsuarioService} from '../../providers/usuario.service';
 import {Url} from '../../url';
-import {Load} from '../../loading';
+//import {Load} from '../../loading';
 import { ToastController } from 'ionic-angular';
 
 
@@ -67,7 +67,7 @@ export class UsuarioPage implements OnInit {
   }
     listar() {
       //las promesas retornan promesas por lo tanto el resultado se debe tratar como una promesa, con el then y catch
-      let load= new Load() //se instancia un load por cada llamada a la funcion
+    //  let load= new Load() //se instancia un load por cada llamada a la funcion
     //  load.present(this.navController) //se presenta el loading al usuario
       return  this.usuarioService.getUsuarios(this.navController).then(usuarios => { this.usuarios = usuarios; return usuarios }).then(usuarios => {
           for(var usuario of this.usuarios){
@@ -89,7 +89,7 @@ export class UsuarioPage implements OnInit {
         else if (this.credenciales.clave != this.credenciales.clave2) this.presentToast('Claves no coinciden');
         else {
 
-          let load= new Load()
+      //    let load= new Load()
         //  load.present(this.navController)
             //se busca el tipo dentro de la lista de tipos por el nombre dado en el select de tipos al crear
             let tipo = this.tipos.find(tipo => this.Tipo == tipo.name);
@@ -118,7 +118,7 @@ export class UsuarioPage implements OnInit {
 
     }
     modificar() {
-      let load= new Load()
+      //let load= new Load()
     //  load.present(this.navController)
 
       let validator = new Validator();
@@ -139,7 +139,7 @@ export class UsuarioPage implements OnInit {
       }
     }
     eliminar() {
-      let load= new Load()
+    //  let load= new Load()
       //load.present(this.navController)
               for(var usuario of this.usuariosEliminar){
                 this.usuarioService.eliminarUsuario(usuario,this.navController).then(result =>

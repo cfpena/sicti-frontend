@@ -1,12 +1,12 @@
-import {Component, OnInit, Input, ViewChild} from '@angular/core';
-import {NavController, MenuController, Toast} from 'ionic-angular';
+import {Component, OnInit, Input} from '@angular/core';
+import {NavController, MenuController} from 'ionic-angular';
 import {ITEM} from '../item/item.model';
-import {MaterializeDirective} from "../../materialize-directive";
+//import {MaterializeDirective} from "../../materialize-directive";
 import {Validator} from "validator.ts/Validator";
 import {Kit} from '../kit/kit.model';
 import {KitDetalle} from '../kit/kit.model';
-import {Url} from '../../url'
-import {Http, Headers} from '@angular/http';
+//import {Url} from '../../url'
+import {Http} from '@angular/http';
 import {KitService} from '../../providers/kit.service';
 import {ItemService} from '../../providers/item.service';
 import { ToastController } from 'ionic-angular';
@@ -158,7 +158,7 @@ export class KitPage implements OnInit{
 
       //generar codigo para el siguiente item
       generarCodigoKit(){
-        var codigoAnterior;
+    //    var codigoAnterior;
         let nuevoCodigo;
         //getUltimoCodItem : retorna el ultimo codigo para sumarle 1 para el nuevoC
         this.kitService.getUltimoCodKit(this.navController).then(codigoAnterior => {

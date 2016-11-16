@@ -1,15 +1,15 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { NavController, MenuController, Toast } from 'ionic-angular';
+import { Component, OnInit, Input } from '@angular/core';
+import { NavController, MenuController } from 'ionic-angular';
 import { Persona } from '../persona/persona.model';
 import { Usuario } from '../usuario/usuario.model';
-import { UsuarioPage } from '../usuario/usuario';
+//import { UsuarioPage } from '../usuario/usuario';
 import { UsuarioService } from '../../providers/usuario.service';
-import { MaterializeDirective } from "../../materialize-directive";
+//import { MaterializeDirective } from "../../materialize-directive";
 import { Validator } from "validator.ts/Validator";
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import { PersonaService } from '../../providers/persona.service';
-import { Url } from '../../url';
-import { Load } from '../../loading';
+//import { Url } from '../../url';
+//import { Load } from '../../loading';
 import { ToastController } from 'ionic-angular';
 
 

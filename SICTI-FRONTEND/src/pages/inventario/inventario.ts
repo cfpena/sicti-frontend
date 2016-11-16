@@ -1,13 +1,13 @@
-import {Component,  OnInit, Input, ViewChild } from '@angular/core';
-import {NavController, MenuController, Toast} from 'ionic-angular';
-import {MaterializeDirective} from "../../materialize-directive";
+import {Component,  OnInit, Input } from '@angular/core';
+import {NavController, MenuController} from 'ionic-angular';
+//import {MaterializeDirective} from "../../materialize-directive";
 import {Validator} from "validator.ts/Validator";
 import {Persona} from '../persona/persona.model';
 import {FacturaIngreso} from '../inventario/inventario.model';
 import {IngresoEgreso} from '../inventario/inventario.model';
 import {ITEM} from '../item/item.model';
 import {Kit} from '../kit/kit.model';
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import {InventarioService} from '../../providers/inventario.service';
 import {PersonaService} from '../../providers/persona.service';
 import {ItemService } from '../../providers/item.service';
@@ -108,7 +108,7 @@ export class InventarioPage implements OnInit{
 
     crearMovimiento(){
       //console.log('voy a crear mov');
-      let validator = new Validator();
+    //  let validator = new Validator();
       //console.log(JSON.stringify(this.movimientoNuevo));
 
       //console.log(JSON.stringify(validator.validate(this.movimientoNuevo)));

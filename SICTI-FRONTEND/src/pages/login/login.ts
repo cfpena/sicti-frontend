@@ -1,13 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {NavController,Toast} from 'ionic-angular';
-import {PrincipalPage} from '../principal/principal';
+import {NavController} from 'ionic-angular';
+//import {PrincipalPage} from '../principal/principal';
 import {InventarioPage} from '../inventario/inventario';
 import {Usuario} from '../usuario/usuario.model';
 import {UsuarioAuthService} from '../../providers/usuario.auth.service';
 import {Storage} from '@ionic/storage';
 import {Http, Headers} from '@angular/http';
-import {FORM_DIRECTIVES} from '@angular2/common';
-import {JwtHelper} from 'angular2-jwt';
+//import {FORM_DIRECTIVES} from '@angular2/common';
+//import {JwtHelper} from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 import {Url} from '../../url';
 import { ToastController } from 'ionic-angular';

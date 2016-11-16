@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { NavController, MenuController, Toast, Modal,Platform } from 'ionic-angular';
+import { Component, OnInit, Input } from '@angular/core';
+import { NavController, MenuController,Platform } from 'ionic-angular';
 import { ITEM } from './item.model';
-import { MaterializeDirective } from "../../materialize-directive";
+//import { MaterializeDirective } from "../../materialize-directive";
 import { Validator } from "validator.ts/Validator";
-import { Url } from './url'
-import { Http, Headers } from '@angular/http';
+//import { Url } from './url'
+import { Http } from '@angular/http';
 import {ItemService } from '../../providers/item.service';
 import {Camera} from 'ionic-native';
 import { ToastController } from 'ionic-angular';
@@ -116,7 +116,7 @@ export class ItemPage implements OnInit {
 
           // Create a FileReader
           // Create a FileReader
-           var reader: any, target: EventTarget;
+           var reader: any;// target: EventTarget;
            reader = new FileReader();
 
           // Add an event listener to deal with the file when the reader is complete
@@ -211,7 +211,7 @@ export class ItemPage implements OnInit {
 
   //generar codigo para el siguiente item
     generarCodigoItem(){
-       var codigoAnterior;
+      // var codigoAnterior;
        let nuevoCodigo;
        //getUltimoCodItem : retorna el ultimo codigo para sumarle 1 para el nuevoC
        this.itemService.getUltimoCodItem(this.navController).then(codigoAnterior => {

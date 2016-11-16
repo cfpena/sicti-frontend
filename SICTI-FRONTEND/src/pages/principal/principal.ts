@@ -1,10 +1,10 @@
 import {Component,OnInit} from '@angular/core';
 import {NavController,MenuController} from 'ionic-angular';
 import {UsuarioAuthService} from '../../providers/usuario.auth.service';
-import { Http, Headers } from '@angular/http';
+import { Http } from '@angular/http';
 import {Url} from '../../url';
 import {InventarioPage} from '../inventario/inventario';
-import { ToastController } from 'ionic-angular';
+//import { ToastController } from 'ionic-angular';
 
 
 @Component({

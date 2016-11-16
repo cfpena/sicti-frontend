@@ -93,7 +93,7 @@ export class ItemPage implements OnInit {
             else this.itemNuevo.Imagen=null
             this.itemService.createItem(this.itemNuevo,this.navController).then(result => {
               //let r = result  as ITEM
-              let r =  JSON.parse(JSON.stringify(result))  as ITEM
+              //let r =  JSON.parse(JSON.stringify(result))  as ITEM
               //this.itemService.uploadImagen(r.url,this.itemNuevo.Imagen,this.navController)
               this.listar();
               this.presentToast('item creado correctamente');

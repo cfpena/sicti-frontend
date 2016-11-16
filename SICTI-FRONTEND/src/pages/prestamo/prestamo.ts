@@ -287,7 +287,7 @@ public toastCtrl: ToastController) {
      var dd = hoy.getDate();
      var mm = hoy.getMonth()+1;
      var yyyy = hoy.getFullYear();
-     var codigoAnterior;
+     //var codigoAnterior;
      let nuevoCodigo;
 
   this.prestamoService.getUltimaActa(this.navController).then(codigoAnterior => {

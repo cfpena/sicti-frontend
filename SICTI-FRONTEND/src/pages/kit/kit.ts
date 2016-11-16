@@ -87,7 +87,8 @@ export class KitPage implements OnInit{
         for (var kitdet of kit.KitDetalle){
           kitdet.Item=kitdet.Item.url
         }
-        let result=this.kitService.createKit(kit,this.navController).then(result => {this.listar();
+        let result=this.kitService.createKit(kit,this.navController)
+        .then(result => {this.listar();
           //let result=this.kitService.createKit(kit,this.navController).then(result => {this.listar();
           this.presentToast('Kit creado correctamente');
         }).catch(err=> {return false});

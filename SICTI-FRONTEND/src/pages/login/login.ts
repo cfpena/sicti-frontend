@@ -11,12 +11,23 @@ import {JwtHelper} from 'angular2-jwt';
 import 'rxjs/add/operator/map';
 import {Url} from '../../url';
 import { ToastController } from 'ionic-angular';
+import 'materialize-css/js/materialize.js';
+
+import {MaterializeDirective} from "angular2-materialize";
+
+import { NgModule }      from '@angular/core';
+
 
 @Component({
     templateUrl: 'login.html',
-    providers: [UsuarioAuthService],
-   // directives: [FORM_DIRECTIVES]
+    providers: [UsuarioAuthService,],
+
 })
+
+@NgModule({
+  declarations : [MaterializeDirective],
+})
+
 export class LoginPage implements OnInit {
     @Input()
     usuario = {

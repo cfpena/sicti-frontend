@@ -1,7 +1,6 @@
 import {Component, OnInit, Input, ViewChild} from '@angular/core';
 import {NavController, MenuController, Toast} from 'ionic-angular';
 import {ITEM} from '../item/item.model';
-import {MaterializeDirective} from "../../materialize-directive";
 import {Validator} from "validator.ts/Validator";
 import {Kit} from '../kit/kit.model';
 import {KitDetalle} from '../kit/kit.model';
@@ -10,6 +9,15 @@ import {Http, Headers} from '@angular/http';
 import {KitService} from '../../providers/kit.service';
 import {ItemService} from '../../providers/item.service';
 import { ToastController } from 'ionic-angular';
+
+import {MaterializeDirective} from "angular2-materialize";
+import { NgModule }      from '@angular/core';
+
+
+@NgModule({
+  declarations : [MaterializeDirective],
+})
+
 
 @Component({
   templateUrl: 'kit.html',

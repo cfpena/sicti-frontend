@@ -4,13 +4,20 @@ import { Persona } from '../persona/persona.model';
 import { Usuario } from '../usuario/usuario.model';
 import { UsuarioPage } from '../usuario/usuario';
 import { UsuarioService } from '../../providers/usuario.service';
-import { MaterializeDirective } from "../../materialize-directive";
 import { Validator } from "validator.ts/Validator";
 import { Http, Headers } from '@angular/http';
 import { PersonaService } from '../../providers/persona.service';
 import { Url } from '../../url';
 import { Load } from '../../loading';
 import { ToastController } from 'ionic-angular';
+import {MaterializeDirective} from "angular2-materialize";
+import { NgModule }      from '@angular/core';
+
+
+@NgModule({
+  declarations : [MaterializeDirective],
+})
+
 
 
 @Component({

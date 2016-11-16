@@ -11,12 +11,19 @@ import {PrestamoPage} from './pages/prestamo/prestamo';
 import {ReportesPage} from './pages/reportes/reportes';
 import {UsuarioPage} from './pages/usuario/usuario';
 import {UsuarioAuthService} from '../providers/usuario.auth.service';
-import {MaterializeDirective} from "./materialize-directive";
+import "materialize-css";
+import "angular2-materialize";
 //import {Storage, LocalStorage} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
 
+import {MaterializeDirective} from "angular2-materialize";
+import { NgModule }      from '@angular/core';
 
+
+@NgModule({
+  declarations : [MaterializeDirective],
+})
 
 
 
@@ -25,6 +32,8 @@ import {LocalStorage, SessionStorage} from "angular2-localstorage/WebStorage";
   templateUrl: 'app.html',
 
 })
+
+
 export class MyApp implements OnInit {
   @ViewChild(Nav) nav: Nav;
   local: Storage = new Storage();
